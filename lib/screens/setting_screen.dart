@@ -11,57 +11,32 @@ import 'package:web_app_demo/utils/Theme/app_text_style.dart';
 import 'package:web_app_demo/utils/color_utils.dart';
 import 'package:web_app_demo/utils/string_utils.dart';
 
-class SettingScreen extends StatelessWidget {
-  SettingScreen({super.key});
+class SettingScreen extends StatefulWidget {
+  const SettingScreen({super.key});
+
+  @override
+  State<SettingScreen> createState() => _SettingScreenState();
+}
+
+class _SettingScreenState extends State<SettingScreen> {
   final controller = Get.put(SettingController());
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorUtils.white,
-      appBar: AppBar(
-        title: CustomText(
-          StringUtils.settings,
-          fontWeight: FontWeight.w700,
-          fontSize: 10.sp,
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-              Get.offAll(() => LoginPage());
-            },
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              buildSection("Village", controller.villages, context),
-              buildSection("Tad", controller.tads, context),
-              buildSection("Parivar", controller.parivars, context),
-            ],
-          ),
-        ),
-      ),
-    );
+  void initState() {
+    super.initState();
+    controller.fetchData();
   }
 
-  void showAddDialog(BuildContext context, String title) {
+  void showAddDialog(String title) {
     final TextEditingController textController = TextEditingController();
 
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
         title: CustomText(
-          'Enter $title name',
-          fontWeight: FontWeight.w700,
-          fontSize: 10.sp,
+          'Add $title',
+          fontWeight: FontWeight.bold,
+          fontSize: 12.sp,
         ),
         content: CommonTextField(
           controller: textController,
@@ -75,9 +50,9 @@ class SettingScreen extends StatelessWidget {
                 onPressed: () => Get.back(),
                 text: 'Cancel',
                 width: 80.w,
-                backgroundColor: Colors.grey.shade500,
+                backgroundColor: Colors.grey.shade400,
                 fontColor: Colors.black,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
                 borderRadius: 8.r,
               ),
               SizedBox(width: 12.w),
@@ -103,27 +78,26 @@ class SettingScreen extends StatelessWidget {
     );
   }
 
-  Widget buildSection(
-    String title,
-    RxList<String> items,
-    BuildContext context,
-  ) {
+  Widget buildSection(String title, RxList<String> items) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Align(
           alignment: Alignment.centerRight,
-          child: CustomBtn(
-            width: 90.w,
-            text: "Add $title",
-            icon: Icons.add,
-            fontSize: 8.sp,
-            onPressed: () => showAddDialog(context, title),
-            fontColor: Colors.white,
-            fontWeight: FontWeight.bold,
-            backgroundColor: Theme.of(context).primaryColor,
-            borderColor: Colors.white,
-            borderRadius: 8.r,
+          child: Padding(
+            padding: EdgeInsets.only(right: 8.w),
+            child: CustomBtn(
+              width: 100.w,
+              text: "Add $title",
+              icon: Icons.add,
+              fontSize: 10.sp,
+              onPressed: () => showAddDialog(title),
+              fontColor: Colors.white,
+              fontWeight: FontWeight.bold,
+              backgroundColor: Theme.of(context).primaryColor,
+              borderColor: Colors.transparent,
+              borderRadius: 10.r,
+            ),
           ),
         ),
         SizedBox(height: 10.h),
@@ -132,16 +106,16 @@ class SettingScreen extends StatelessWidget {
             return CustomText(
               "No $title added yet.",
               color: Colors.grey,
-              fontSize: 9.sp,
+              fontSize: 10.sp,
             );
           } else {
             return Wrap(
-              spacing: 8,
-              runSpacing: 8,
+              spacing: 10.w,
+              runSpacing: 10.h,
               children: items
                   .map(
                     (item) => Chip(
-                      label: CustomText(item, fontSize: 8.sp),
+                      label: CustomText(item, fontSize: 10.sp),
                       backgroundColor: Theme.of(
                         context,
                       ).primaryColor.withOpacity(0.1),
@@ -154,6 +128,43 @@ class SettingScreen extends StatelessWidget {
         }),
         SizedBox(height: 25.h),
       ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: ColorUtils.white,
+      appBar: AppBar(
+        title: CustomText(
+          StringUtils.settings,
+          fontWeight: FontWeight.w700,
+          fontSize: 16.sp,
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Get.offAll(() => LoginPage());
+            },
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              buildSection("Village", controller.villages),
+              buildSection("Tad", controller.tads),
+              buildSection("Parivar", controller.parivars),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

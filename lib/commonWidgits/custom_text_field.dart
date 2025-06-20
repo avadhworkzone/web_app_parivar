@@ -295,9 +295,13 @@ class CommonTextField extends StatelessWidget {
       obscureText: obscureText,
       keyboardType: keyboardType,
       validator: validator,
+      style: TextStyle(fontSize: 10.sp, fontFamily: FontUtils.cerebriSans),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(fontSize: 10.sp),
+        labelStyle: TextStyle(
+          fontSize: 10.sp,
+          fontFamily: FontUtils.cerebriSans,
+        ),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12.r)),
         contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       ),
