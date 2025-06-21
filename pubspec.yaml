@@ -42,6 +42,7 @@ dependencies:
   flutter_svg: ^2.2.0
   cached_network_image: ^3.4.1
   octo_image: ^2.1.0
+  firebase_storage: ^12.4.7
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -81,6 +85,17 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: CerebriSans
+      fonts:
+        - asset: assets/fonts/CerebriSans-Light.ttf
+          weight: 200
+        - asset: assets/fonts/CerebriSans-Regular.ttf
+          weight: 500
+        - asset: assets/fonts/CerebriSans-Medium.ttf
+          weight: 600
+        - asset: assets/fonts/CerebriSans-Bold.ttf
+          weight: 700
   # fonts:
   #   - family: Schyler
   #     fonts:

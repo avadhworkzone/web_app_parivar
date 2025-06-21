@@ -21,4 +21,22 @@ class StringUtils {
   static const minimumSixCharacters = "Minimum 6 characters";
   static const home = "Home";
   static const settings = "Settings";
+  static const addMember = "Add Member";
+  static const noMembersAddedYet = "No members added yet.";
+  static const age = "Age";
+  static const gender = "Gender";
+  static const name = "Name";
+  static const address = "Address";
+  static const education = "Education";
+  static const sex = "Sex";
+  static const male = "Male";
+  static const female = "Female";
+  static const other = "Other";
+  static const cancel = "Cancel";
+  static const add = "Add";
+  static const vadaName = "Vada's Name";
+  static const required = "Required";
+  static const pleaseFillAllDetails =
+      "Please fill all fields and select an image";
+  static const mobileNumber = "Mobile number";
 }

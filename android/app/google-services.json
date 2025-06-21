@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "666802123103",
-    "project_id": "webapp-a487f",
-    "storage_bucket": "webapp-a487f.firebasestorage.app"
+    "project_number": "630594473617",
+    "project_id": "parivarmilap",
+    "storage_bucket": "parivarmilap.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:666802123103:android:0ff92991c0bce7c055c6ea",
+        "mobilesdk_app_id": "1:630594473617:android:272b0bae273b919ff57930",
         "android_client_info": {
           "package_name": "com.example.web_app_demo"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAtprbHmrhgOj76x59zg6B1FvO54-suRuk"
+          "current_key": "AIzaSyDQgdGFCx_ZCSwGDzyNkcw12IgJBOn8-SI"
         }
       ],
       "services": {
